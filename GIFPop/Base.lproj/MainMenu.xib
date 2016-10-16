@@ -448,7 +448,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5e-KU-9hJ">
-                                    <rect key="frame" x="110" y="48" width="179" height="26"/>
+                                    <rect key="frame" x="110" y="48" width="140" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="push" title="Don't change" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lxE-t8-5cq" id="PBX-aS-Z1f">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -508,7 +508,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bV3-yX-AKR">
-                                    <rect key="frame" x="110" y="92" width="179" height="26"/>
+                                    <rect key="frame" x="110" y="92" width="140" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="push" title="Keep all" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XXx-r1-OtI" id="KYD-jR-W3F">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -517,7 +517,7 @@
                                             <items>
                                                 <menuItem title="Keep all" state="on" toolTip="Keep all frames from original gif (no trimming)" id="XXx-r1-OtI"/>
                                                 <menuItem title="Trim from end" tag="2" toolTip="Trim the specified number of frames from the end of the gif" id="iJb-cE-y5d"/>
-                                                <menuItem title="Trim from beginning" tag="1" toolTip="Trim the specified number of frames from the beginning of the gif" id="1sg-Kv-QDI"/>
+                                                <menuItem title="Trim from start" tag="1" toolTip="Trim the specified number of frames from the beginning of the gif" id="1sg-Kv-QDI"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -525,24 +525,6 @@
                                         <action selector="framePopUpChanged:" target="vsq-Y9-dNx" id="Den-fT-Box"/>
                                     </connections>
                                 </popUpButton>
-                                <textField toolTip="The number of frames to trim from the GIF" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lKd-MX-5eT">
-                                    <rect key="frame" x="317" y="94" width="43" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="QRe-7b-9Sq">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-sw-s6S">
-                                    <rect key="frame" x="292" y="97" width="24" height="17"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="#:" id="8Vi-Bv-1uS">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" white="0.0" alpha="0.52000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G8Q-JM-vX2">
                                     <rect key="frame" x="110" y="152" width="139" height="19"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -567,6 +549,24 @@
                                         <constraint firstAttribute="height" constant="1" id="UkD-u4-sIl"/>
                                     </constraints>
                                 </box>
+                                <textField toolTip="The number of frames to trim from the GIF" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lKd-MX-5eT">
+                                    <rect key="frame" x="278" y="95" width="43" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="QRe-7b-9Sq">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-sw-s6S">
+                                    <rect key="frame" x="253" y="98" width="24" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="#:" id="8Vi-Bv-1uS">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" white="0.0" alpha="0.52000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="oBC-x2-eh3" firstAttribute="leading" secondItem="cAG-ao-nK0" secondAttribute="leading" constant="20" id="J4i-Gy-LA8"/>
