@@ -37,6 +37,7 @@ class Resizer : NSObject, GIFPreviewDelegate
     @IBOutlet weak var resizerWindow: NSWindow!
     @IBOutlet weak var aboutIcon: NSImageView!
     @IBOutlet var aboutTextView: NSTextView!
+    @IBOutlet weak var aboutOKButton: NSButton!
     
     //MARK: - Properties -
     
@@ -362,6 +363,7 @@ extension Resizer
         aboutTextView.readRTFD(fromFile: Bundle.main.path(forResource: "HelpText", ofType: "rtf")!)
         aboutIcon.image = NSImage.init(imageLiteralResourceName: "AppIcon")
         resizerWindow.beginSheet(aboutWindow) { (response: NSModalResponse) in }
+        aboutWindow.makeFirstResponder(aboutOKButton)
     }
     
     @IBAction func aboutOKClicked(_ sender: AnyObject)

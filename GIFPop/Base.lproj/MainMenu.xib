@@ -16,6 +16,7 @@
         <customObject id="vsq-Y9-dNx" customClass="Resizer" customModule="GIFPop" customModuleProvider="target">
             <connections>
                 <outlet property="aboutIcon" destination="Qir-N3-ix7" id="pgo-kZ-4LC"/>
+                <outlet property="aboutOKButton" destination="v5b-6I-4qw" id="enm-1T-RnM"/>
                 <outlet property="aboutTextView" destination="NPN-fI-oOy" id="wG3-Lb-juI"/>
                 <outlet property="aboutWindow" destination="QMa-hy-zec" id="jBG-3b-dTo"/>
                 <outlet property="frameTrimTextField" destination="lKd-MX-5eT" id="qFH-gX-H3i"/>
@@ -715,10 +716,6 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="EfO-ol-2by"/>
                     </imageView>
-                    <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YW9-E4-Ynk">
-                        <rect key="frame" x="118" y="61" width="5" height="340"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="sbX-gj-45R">
                         <rect key="frame" x="48" y="287" width="37" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -742,6 +739,10 @@ DQ
                             <action selector="aboutOKClicked:" target="vsq-Y9-dNx" id="S7k-Z2-vIz"/>
                         </connections>
                     </button>
+                    <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="uZK-vF-rqC">
+                        <rect key="frame" x="118" y="61" width="5" height="340"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </box>
                 </subviews>
             </view>
             <point key="canvasLocation" x="345" y="1226.5"/>
