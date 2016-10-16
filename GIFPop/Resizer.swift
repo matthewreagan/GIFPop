@@ -35,8 +35,8 @@ class Resizer : NSObject, GIFPreviewDelegate
     @IBOutlet weak var saveGIFButton: NSButton!
     @IBOutlet weak var aboutWindow: NSWindow!
     @IBOutlet weak var resizerWindow: NSWindow!
-    @IBOutlet var aboutTextView: NSTextView!
     @IBOutlet weak var aboutIcon: NSImageView!
+    @IBOutlet var aboutTextView: NSTextView!
     
     //MARK: - Properties -
     
@@ -79,32 +79,30 @@ extension Resizer
     
     @IBAction func saveResizedClicked(_ sender: AnyObject)
     {
-        if (inputGIFImage == nil || inputGIFPath == nil)
+        if (inputGIFImage != nil && inputGIFPath != nil)
         {
-            return
-        }
-        
-        let savePanel = NSSavePanel()
-        savePanel.isExtensionHidden = false
-        savePanel.canSelectHiddenExtension = true
-        savePanel.allowedFileTypes = ["gif"]
-        savePanel.allowsOtherFileTypes = false
-        
-        let originalName = (originalGIFPath! as NSString).lastPathComponent
-        let newName = (originalName as NSString).deletingPathExtension
-        
-        savePanel.nameFieldStringValue = newName + " Resized.gif"
-        savePanel.nameFieldLabel = "Save resized GIF as:"
-        
-        savePanel.begin(completionHandler: { (result: Int) in
-            if (result == NSFileHandlingPanelOKButton)
-            {
-                if let url = savePanel.url
+            let savePanel = NSSavePanel()
+            savePanel.isExtensionHidden = false
+            savePanel.canSelectHiddenExtension = true
+            savePanel.allowedFileTypes = ["gif"]
+            savePanel.allowsOtherFileTypes = false
+            
+            let originalName = (originalGIFPath! as NSString).lastPathComponent
+            let newName = (originalName as NSString).deletingPathExtension
+            
+            savePanel.nameFieldStringValue = newName + " Resized.gif"
+            savePanel.nameFieldLabel = "Save resized GIF as:"
+            
+            savePanel.begin(completionHandler: { (result: Int) in
+                if (result == NSFileHandlingPanelOKButton)
                 {
-                    self.runGifsicle(outputPath: url.path)
+                    if let url = savePanel.url
+                    {
+                        self.runGifsicle(outputPath: url.path)
+                    }
                 }
-            }
-        })
+            })
+        }
     }
     
     @IBAction func newWidthFieldChanged(_ sender: NSTextField)
@@ -203,14 +201,15 @@ extension Resizer
     
     func loadGIFAtPath(pathToGIF: String)
     {
-        let path = (NSTemporaryDirectory() as NSString).appendingPathComponent("GIFPopResizeOriginal.gif")
+        let defaultTempGIFName = "GIFPopResizeOriginal.gif"
+        let tempGIFPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(defaultTempGIFName)
         
-        try? FileManager.default.removeItem(atPath: path)
-        try? FileManager.default.copyItem(atPath: pathToGIF, toPath: path)
+        try? FileManager.default.removeItem(atPath: tempGIFPath)
+        try? FileManager.default.copyItem(atPath: pathToGIF, toPath: tempGIFPath)
         
-        inputGIFInfo = gifsicle.getGifsicleInfo(inputImage: path)
+        inputGIFInfo = gifsicle.getGifsicleInfo(inputImage: tempGIFPath)
         originalGIFPath = pathToGIF
-        inputGIFPath = path
+        inputGIFPath = tempGIFPath
     }
     
     func refreshUIWithPreviewAnimationDisabled()
@@ -241,7 +240,11 @@ extension Resizer
             {
                 newWidthTextField.integerValue = Int(self.originalGIFSize.width)
                 newHeightTextField.integerValue = Int(self.originalGIFSize.height)
-                newSizeSlider.doubleValue = 100.0
+                newSizeSlider.doubleValue = newSizeSlider.maxValue
+                frameTrimTextField.stringValue = ""
+                framesPopUp.selectItem(withTag: 0)
+                optimizationPopUp.selectItem(withTag: 0)
+                newColorsPopUp.selectItem(withTag: 0)
             }
             
             preview.displayAimatedGIF(gif: inputGIFImage, atSize: self.proposedSize)

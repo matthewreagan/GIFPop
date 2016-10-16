@@ -9,15 +9,11 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
 
+class AppDelegate: NSObject, NSApplicationDelegate
+{
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var resizer: Resizer!
-
-    func applicationDidFinishLaunching(_ aNotification: Notification)
-    {
-        
-    }
 
     func applicationWillTerminate(_ aNotification: Notification)
     {
@@ -28,7 +24,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             try? FileManager.default.removeItem(atPath: gifPath)
         }
     }
-
-
 }
 
