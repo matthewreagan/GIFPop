@@ -231,7 +231,7 @@ class GIFPreview: NSView
                                        floor((myHeight - imageSize) / 2.0),
                                        imageSize, imageSize)
             
-            dropHereImage.draw(in: imageRect, from: NSZeroRect, operation: NSCompositingOperation.sourceOver, fraction: 0.5)
+            dropHereImage.draw(in: imageRect, from: NSZeroRect, operation: NSCompositingOperation.sourceOver, fraction: 0.7)
         }
         
         NSColor.init(white: 0.0, alpha: 0.08).setFill()

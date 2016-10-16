@@ -26,7 +26,9 @@ class Gifsicle
     {
         pathToGifsicle = runSystemTaskForStringOutput(executablePath: pathToWhich, arguments: [gifsicleExecutableName])
         
-        if (pathToGifsicle?.characters.count == 0)
+        if (pathToGifsicle == nil ||
+            pathToGifsicle!.characters.count == 0 ||
+            (FileManager.default.fileExists(atPath: pathToGifsicle!) == false))
         {
             pathToGifsicle = Bundle.main.path(forResource: gifsicleExecutableName, ofType: nil)
         }
@@ -159,6 +161,11 @@ extension Gifsicle
     
     func runSystemTask(executablePath: String, arguments: [String]) -> Data
     {
+        if (FileManager.default.fileExists(atPath: executablePath) == false)
+        {
+            return Data()
+        }
+        
         let task = Process()
         
         task.launchPath = executablePath

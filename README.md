@@ -2,10 +2,10 @@
 
 GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) editor for Mac. Its minimal UI wraps [gifsicle](https://github.com/kohler/gifsicle) under the hood, and currently supports the following:
 
-- Resizing GIFs
+- Resizing
+- Optimizing
 - Trimming frames
 - Reducing colors
-- Optimizing
 
 ## How To Use
 
@@ -19,7 +19,7 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 
 ## ToDo's
 
-- [ ] Process GIFs in background and provide live previews (so that trimming, optimization, etc. are visible in the preview GIF)
+- [ ] Process GIFs in background and provide live previews (so that trimming, optimization, etc. are visible in the preview)
 - [ ] Support export of resized gif by drag-and-drop
 - [ ] Add options for frame delay changes
 - [ ] Fix drag of new GIFs onto preview pane
