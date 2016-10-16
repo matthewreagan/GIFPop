@@ -10,10 +10,26 @@ import Cocoa
 
 @NSApplicationMain
 
-class AppDelegate: NSObject, NSApplicationDelegate
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
 {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var resizer: Resizer!
+    
+    func applicationDidFinishLaunching(_ notification: Notification)
+    {
+        let hasShownAboutWindowForFirstLaunchDefaultsKey =
+            "GIFPopHasShownAboutWindowForFirstLaunch"
+        
+        let hasShownAbout = UserDefaults.standard.bool(forKey: hasShownAboutWindowForFirstLaunchDefaultsKey)
+        
+        if (!hasShownAbout)
+        {
+            resizer.helpButtonClicked(self)
+            UserDefaults.standard.set(true, forKey: hasShownAboutWindowForFirstLaunchDefaultsKey)
+        }
+        
+        window.delegate = self
+    }
 
     func applicationWillTerminate(_ aNotification: Notification)
     {
@@ -23,6 +39,11 @@ class AppDelegate: NSObject, NSApplicationDelegate
         {
             try? FileManager.default.removeItem(atPath: gifPath)
         }
+    }
+    
+    func windowWillClose(_ notification: Notification)
+    {
+        NSApp.terminate(nil)
     }
 }
 
