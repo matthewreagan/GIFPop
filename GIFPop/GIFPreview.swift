@@ -59,12 +59,11 @@ class GIFPreview: NSView
                 
                 applyGIFViewConstraints(atSize: size)
             }
-            else if (gifView?.image == gif)
+            else
             {
                 gifWidthConstraint?.constant = size.width
                 gifHeightConstraint?.constant = size.height
             }
-            
             
             gifView?.image = gif
         }

@@ -22,6 +22,7 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 - [ ] Process GIFs in background and provide live previews (so that trimming, optimization, etc. are visible in the preview GIF)
 - [ ] Support export of resized gif by drag-and-drop
 - [ ] Add options for frame delay changes
+- [ ] Fix drag of new GIFs onto preview pane
 
 ## Author
 
