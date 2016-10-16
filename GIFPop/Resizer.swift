@@ -214,6 +214,8 @@ extension Resizer
     
     func refreshUIWithPreviewAnimationDisabled()
     {
+        /*  Disables the animation of the GIF NSImageView during preview resizing */
+        
         preview.animates = false
         refreshUI()
         preview.animates = true
@@ -231,7 +233,8 @@ extension Resizer
         if (hasGIF)
         {
             gifInfoLabel.stringValue = (originalGIFPath! as NSString).lastPathComponent + "\n" +
-                "Dimensions: \(Int(self.originalGIFSize.width)) x \(Int(self.originalGIFSize.height))\tFile size: \(calculateFileSizeOfInputGIF()) kb\n" +
+                "Dimensions: \(Int(self.originalGIFSize.width)) x \(Int(self.originalGIFSize.height))" +
+                "\tFile size: \(calculateFileSizeOfInputGIFInKB()) kb\n" +
                 "Frames: \(inputGIFInfo.numberOfFrames) @ \(Int(inputGIFInfo.frameDelay * 1000.0))ms delay\n" +
                 "Colors: \(inputGIFInfo.numberOfColors)"
             gifInfoLabel.alignment = .left
@@ -262,34 +265,34 @@ extension Resizer
     
     func setOptionsEnabled(_ enabled: Bool)
     {
+        /*  A bit heavy handed but we just filter on any NSControls in the NSBox: */
+        
         let controls = self.optionsBox.contentView?.subviews.flatMap { $0 as? NSControl }
         
-        for control in controls!
-        {
-            control.isEnabled = enabled
-        }
+        for control in controls! { control.isEnabled = enabled }
         
         saveGIFButton.isEnabled = enabled
     }
     
     func validateFrameTrimField()
     {
-        switch framesPopUp.selectedTag()
+        let selectedTrimOption = framesPopUp.selectedTag()
+        
+        if ((selectedTrimOption == FrameTrimmingOption.trimBeginning.rawValue) ||
+            (selectedTrimOption == FrameTrimmingOption.trimEnd.rawValue))
         {
-            case FrameTrimmingOption.dontChange.rawValue:
-                frameTrimTextField.isEnabled = false
-                frameTrimTextField.stringValue = ""
-            case FrameTrimmingOption.trimBeginning.rawValue,
-                 FrameTrimmingOption.trimEnd.rawValue:
-                frameTrimTextField.isEnabled = true
-            default:
-                frameTrimTextField.isEnabled = false
+            frameTrimTextField.isEnabled = true
+        }
+        else
+        {
+            frameTrimTextField.isEnabled = false
+            frameTrimTextField.stringValue = ""
         }
     }
     
     //MARK: - Misc Helper Functions -
     
-    func calculateFileSizeOfInputGIF() -> UInt64
+    func calculateFileSizeOfInputGIFInKB() -> UInt64
     {
         var fileSizeOfGIFInKB: UInt64 = 0
         let fileAttributes = try? FileManager.default.attributesOfItem(atPath: inputGIFPath!)
@@ -319,22 +322,20 @@ extension Resizer
             let newSize = NSSize(width: newWidthTextField.integerValue, height: newHeightTextField.integerValue)
             let optimization = optimizationPopUp.selectedTag()
             let colorLimit = newColorsPopUp.selectedTag()
-            
             let totalFrames = self.inputGIFInfo.numberOfFrames
             let frameTrimCount = max(0, min(frameTrimTextField.integerValue, totalFrames - 1))
-            
             var trimmedFrames: String? = nil
             
             if (frameTrimCount > 0)
             {
                 switch framesPopUp.selectedTag()
                 {
-                case FrameTrimmingOption.trimBeginning.rawValue:
-                    trimmedFrames = "\(frameTrimCount)-\(totalFrames - 1)"
-                case FrameTrimmingOption.trimEnd.rawValue:
-                    trimmedFrames = "0-\(totalFrames - 1 - frameTrimCount)"
-                default:
-                    trimmedFrames = "0-\(totalFrames - 1)"
+                    case FrameTrimmingOption.trimBeginning.rawValue:
+                        trimmedFrames = "\(frameTrimCount)-\(totalFrames - 1)"
+                    case FrameTrimmingOption.trimEnd.rawValue:
+                        trimmedFrames = "0-\(totalFrames - 1 - frameTrimCount)"
+                    default:
+                        trimmedFrames = "0-\(totalFrames - 1)"
                 }
             }
             
