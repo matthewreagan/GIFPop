@@ -4,7 +4,6 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="box content view" minToolsVersion="7.0"/>
-        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -449,7 +448,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5e-KU-9hJ">
-                                    <rect key="frame" x="110" y="48" width="126" height="26"/>
+                                    <rect key="frame" x="110" y="48" width="159" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="push" title="Don't change" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lxE-t8-5cq" id="PBX-aS-Z1f">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -579,7 +578,7 @@
                             <constraint firstAttribute="height" constant="202" id="JMU-LY-4nq"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="378" id="O6U-Mo-URl"/>
                         </constraints>
-                        <font key="titleFont" metaFont="systemSemibold" size="11"/>
+                        <font key="titleFont" metaFont="systemBold" size="11"/>
                     </box>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="SWv-EU-IrJ" customClass="GIFPreview" customModule="GIFPop" customModuleProvider="target">
                         <rect key="frame" x="20" y="51" width="378" height="210"/>
@@ -632,8 +631,18 @@ DQ
                                 <constraint firstItem="cZt-Zl-Yyb" firstAttribute="centerY" secondItem="oU8-1W-NOH" secondAttribute="centerY" id="col-tP-S4t"/>
                             </constraints>
                         </view>
-                        <font key="titleFont" metaFont="systemSemibold" size="11"/>
+                        <font key="titleFont" metaFont="systemBold" size="11"/>
                     </box>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-4p-wfg">
+                        <rect key="frame" x="47" y="13" width="107" height="32"/>
+                        <buttonCell key="cell" type="push" title="Open GIF..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ndy-ec-Bn4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="openMenuItemSelected:" target="vsq-Y9-dNx" id="jDI-8G-Go3"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SWv-EU-IrJ" firstAttribute="top" secondItem="cAG-ao-nK0" secondAttribute="bottom" constant="6" id="0y4-E8-bWA"/>
@@ -642,7 +651,9 @@ DQ
                     <constraint firstItem="Bgb-uC-UyH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="HoP-sL-jym"/>
                     <constraint firstAttribute="trailing" secondItem="SWv-EU-IrJ" secondAttribute="trailing" constant="20" id="JPy-3T-SWV"/>
                     <constraint firstItem="z6x-DO-ZN1" firstAttribute="top" secondItem="hV9-O4-VVe" secondAttribute="bottom" constant="8" id="P4W-l4-IZA"/>
+                    <constraint firstItem="mRb-4p-wfg" firstAttribute="leading" secondItem="Bgb-uC-UyH" secondAttribute="trailing" constant="12" id="Vcp-3F-uR0"/>
                     <constraint firstItem="SWv-EU-IrJ" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="WIt-fK-Qih"/>
+                    <constraint firstAttribute="bottom" secondItem="mRb-4p-wfg" secondAttribute="bottom" constant="20" id="WfN-23-b7B"/>
                     <constraint firstItem="z6x-DO-ZN1" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="110" id="aRx-b1-3Hy"/>
                     <constraint firstItem="hV9-O4-VVe" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="goO-yx-xzK"/>
                     <constraint firstAttribute="trailing" secondItem="z6x-DO-ZN1" secondAttribute="trailing" constant="20" id="igg-j2-juG"/>

@@ -13,9 +13,15 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 2. Adjust the size, trimming, and other options if needed _(Note: only resizing is reflected in the preview, trimming and other options will be visible in the saved GIF)_
 3. Click 'Save GIF...' to export the new GIF
 
+
+## Installation
+
+- If you have gifsicle installed, GIFPop will your local version for processing
+- If you don't have gifsicle installed, GIFPop will use the precompiled version bundled with app. Thus, no setup is necessary for GIFPop, just run the app.
+
 ## Gifsicle
 
-**GIFPop** provides a simple GUI for a few commonly-used features of [Gifsicle](https://github.com/kohler/gifsicle), however it barely scratches the surface of what Gifsicle can do. For more options, you can run Gifsicle from the  command-line.
+**GIFPop** provides a simple GUI for a few commonly-used features of [gifsicle](https://github.com/kohler/gifsicle), however it barely scratches the surface of what Gifsicle can do. For more options, you can run Gifsicle from the  command-line.
 
 ## ToDo's
 
@@ -35,4 +41,4 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 
 ## Acknowledgments
 
-* GIFPop is just a UI wrapper for the very awesome Gifsicle tool. For more info visit the [Gifsicle Homepage](http://www.lcdf.org/gifsicle/)
+* GIFPop is just a UI wrapper for the very awesome Gifsicle tool. For more info visit the [gifsicle Homepage](http://www.lcdf.org/gifsicle/)
