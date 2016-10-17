@@ -15,6 +15,8 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 2. Adjust the size, trimming, and other options if needed _(Note: only resizing is reflected in the preview, trimming and other options will be visible in the saved GIF)_
 3. Click 'Save GIF...' to export the new GIF
 
+![GIFPop Demo](/gifPopDemo.gif?raw=true "GIFPop Demo")
+
 ## Installation
 
 - If you have `gifsicle` installed, GIFPop will use your existing build for processing
