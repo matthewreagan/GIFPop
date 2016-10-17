@@ -2,7 +2,7 @@
 
 # GIFPop!
 
-GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) editor for Mac. Its minimal UI wraps [gifsicle](https://github.com/kohler/gifsicle) under the hood, and currently supports the following:
+GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) editor for Mac, written in [Swift](https://developer.apple.com/swift/). Its minimal UI wraps [gifsicle](https://github.com/kohler/gifsicle) under the hood, and currently supports the following:
 
 - Resizing
 - Optimizing
