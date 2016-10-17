@@ -19,12 +19,17 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 
 ## Installation
 
+- Either download and run the .xcodeproj, or you can use the precompiled app (below)
 - If you have `gifsicle` installed, GIFPop will use your existing build for processing
 - If you don't have `gifsicle` installed, GIFPop will use the precompiled version bundled with app
 
 ### System Requirements
 
 - GIFPop currently targets macOS 10.9+
+
+## Precompiled Binary
+
+GIFPop is also available as a prebuilt (and unsigned) app here: [http://sound-of-silence.com/apps/GIFPop.zip](http://sound-of-silence.com/apps/GIFPop.zip) _(Last update: 10/16/2016)_
 
 ## Gifsicle
 
