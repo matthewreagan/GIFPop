@@ -37,6 +37,8 @@ GIFPop is also available as a prebuilt (and unsigned) app here: [http://sound-of
 
 ## ToDo's
 
+GIFPop is still a work-in-progress. Current ToDo's include:
+
 - [ ] Process GIFs in background and provide live previews (so that trimming, optimization, etc. are visible in the preview)
 - [ ] Support export of resized gif by drag-and-drop
 - [ ] Add options for frame delay changes
