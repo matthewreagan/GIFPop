@@ -43,6 +43,7 @@ GIFPop is still a work-in-progress. Current ToDo's include:
 - [ ] Support export of resized gif by drag-and-drop
 - [ ] Add options for frame delay changes
 - [ ] Fix drag of new GIFs onto preview pane
+- [ ] Provide a spinner or progress bar while processing large GIFs
 
 ## Author
 
