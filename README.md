@@ -1,3 +1,5 @@
+![GIFPop Icon](/GIFPop/Assets.xcassets/AppIcon.appiconset/GIFPopIcon256.png?raw=true "GIFPop Icon")
+
 # GIFPop!
 
 GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) editor for Mac. Its minimal UI wraps [gifsicle](https://github.com/kohler/gifsicle) under the hood, and currently supports the following:
