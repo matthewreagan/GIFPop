@@ -17,8 +17,8 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 
 ## Installation
 
-- If you have gifsicle installed, GIFPop will your local version for processing
-- If you don't have gifsicle installed, GIFPop will use the precompiled version bundled with app. Thus, no setup is necessary for GIFPop, just run the app.
+- If you have `gifsicle` installed, GIFPop will your local version for processing
+- If you don't have `gifsicle` installed, GIFPop will use the precompiled version bundled with app. Thus, no setup is necessary for GIFPop, just run the app.
 
 ### System Requirements
 
