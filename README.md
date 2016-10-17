@@ -46,7 +46,7 @@ GIFPop is still a work-in-progress. Current ToDo's include:
 
 ## Author
 
-**Matt Reagan** - Website: [http://sound-of-silence.com/](http://sound-of-silence.com/) - Twitter: [@hmblbee](https://twitter.com/hmblebee)
+**Matt Reagan** - Website: [http://sound-of-silence.com/](http://sound-of-silence.com/) - Twitter: [@hmblebee](https://twitter.com/hmblebee)
 
 
 ## License
