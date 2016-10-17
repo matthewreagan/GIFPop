@@ -155,7 +155,7 @@ class GIFPreview: NSView
     
     func setUpDragSupport()
     {
-        self.register(forDraggedTypes: [NSColorPboardType, NSFilenamesPboardType, NSPasteboardTypePNG])
+        self.register(forDraggedTypes: [NSFilenamesPboardType])
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation
@@ -180,7 +180,6 @@ class GIFPreview: NSView
         {
             if types!.contains(NSFilenamesPboardType)
             {
-                
                 if let paths = pasteboard.propertyList(forType: NSFilenamesPboardType) as? NSArray
                 {
                     if let imagePath = paths[0] as? String
@@ -199,6 +198,15 @@ class GIFPreview: NSView
                         if (utiType == (kUTTypeGIF as String))
                         {
                             pathToGIF = imagePath
+                        }
+                        else
+                        {
+                            DispatchQueue.main.async {
+                                let alert = NSAlert.init()
+                                alert.messageText = "Animatd GIFs only, please"
+                                alert.informativeText = "This file type (\(utiType)) is not allowed. GIFPop works only with animated .gif files."
+                                alert.runModal()
+                            }
                         }
                     }
                 }
