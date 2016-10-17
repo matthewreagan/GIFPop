@@ -13,11 +13,14 @@ GIFPop is a simple & free animated [.GIF](https://en.wikipedia.org/wiki/GIF) edi
 2. Adjust the size, trimming, and other options if needed _(Note: only resizing is reflected in the preview, trimming and other options will be visible in the saved GIF)_
 3. Click 'Save GIF...' to export the new GIF
 
-
 ## Installation
 
 - If you have gifsicle installed, GIFPop will your local version for processing
 - If you don't have gifsicle installed, GIFPop will use the precompiled version bundled with app. Thus, no setup is necessary for GIFPop, just run the app.
+
+### System Requirements
+
+- GIFPop currently targets macOS 10.9+
 
 ## Gifsicle
 
