@@ -20,24 +20,26 @@ class Resizer : NSObject, GIFPreviewDelegate
         case dontChange = 0, trimBeginning, trimEnd
     }
     
-    //MARK: - Outlets -
+    //MARK: - UI Outlets -
     
     @IBOutlet weak var newWidthTextField: NSTextField!
     @IBOutlet weak var newHeightTextField: NSTextField!
     @IBOutlet weak var frameTrimTextField: NSTextField!
+    @IBOutlet weak var gifInfoLabel: NSTextField!
     @IBOutlet weak var framesPopUp: NSPopUpButton!
     @IBOutlet weak var optimizationPopUp: NSPopUpButton!
     @IBOutlet weak var newColorsPopUp: NSPopUpButton!
+    
     @IBOutlet weak var optionsBox: NSBox!
-    @IBOutlet weak var preview: GIFPreview!
-    @IBOutlet weak var gifInfoLabel: NSTextField!
     @IBOutlet weak var newSizeSlider: NSSlider!
     @IBOutlet weak var saveGIFButton: NSButton!
+    @IBOutlet weak var preview: GIFPreview!
+    
     @IBOutlet weak var aboutWindow: NSWindow!
-    @IBOutlet weak var resizerWindow: NSWindow!
     @IBOutlet weak var aboutIcon: NSImageView!
     @IBOutlet var aboutTextView: NSTextView!
     @IBOutlet weak var aboutOKButton: NSButton!
+    @IBOutlet weak var resizerWindow: NSWindow!
     
     //MARK: - Properties -
     
@@ -71,118 +73,11 @@ class Resizer : NSObject, GIFPreviewDelegate
 }
 
 /****************************************************************************/
-/*  UI functions, IBActions, and related glue code */
+/*  XIB, UI, and other utilities */
 /****************************************************************************/
 
 extension Resizer
 {
-    //MARK: - Actions -
-    
-    @IBAction func saveResizedClicked(_ sender: AnyObject)
-    {
-        if (inputGIFImage != nil && inputGIFPath != nil)
-        {
-            let savePanel = NSSavePanel()
-            savePanel.isExtensionHidden = false
-            savePanel.canSelectHiddenExtension = true
-            savePanel.allowedFileTypes = ["gif"]
-            savePanel.allowsOtherFileTypes = false
-            
-            let originalName = (originalGIFPath! as NSString).lastPathComponent
-            let newName = (originalName as NSString).deletingPathExtension
-            
-            savePanel.nameFieldStringValue = newName + " Resized.gif"
-            savePanel.nameFieldLabel = "Save resized GIF as:"
-            
-            savePanel.begin(completionHandler: { (result: Int) in
-                if (result == NSFileHandlingPanelOKButton)
-                {
-                    if let url = savePanel.url
-                    {
-                        self.runGifsicle(outputPath: url.path)
-                    }
-                }
-            })
-        }
-    }
-    
-    @IBAction func newWidthFieldChanged(_ sender: NSTextField)
-    {
-        let newWidth = min(Double(originalGIFSize.width), max(sender.doubleValue, 1.0))
-        let ratio = newWidth / Double(originalGIFSize.width)
-        let newHeight = Double(originalGIFSize.height) * ratio
-        updateNewDimensionValues(width: newWidth, height: newHeight)
-        newSizeSlider.doubleValue = ratio * newSizeSlider.maxValue
-    }
-    
-    @IBAction func newHeightFieldChanged(_ sender: NSTextField)
-    {
-        let newHeight = min(Double(originalGIFSize.height), max(sender.doubleValue, 1.0))
-        let ratio = newHeight / Double(originalGIFSize.height)
-        let newWidth = Double(originalGIFSize.width) * ratio
-        updateNewDimensionValues(width: newWidth, height: newHeight)
-        newSizeSlider.doubleValue = ratio * newSizeSlider.maxValue
-    }
-    
-    func updateNewDimensionValues(width: Double, height: Double)
-    {
-        newWidthTextField.integerValue = Int(width.rounded())
-        newHeightTextField.integerValue = Int(height.rounded())
-        refreshUIWithPreviewAnimationDisabled()
-    }
-    
-    @IBAction func framePopUpChanged(_ sender: NSPopUpButton)
-    {
-        validateFrameTrimField()
-    }
-    
-    @IBAction func sizeSliderChanged(_ sender: AnyObject)
-    {
-        var width = Double(self.originalGIFSize.width)
-        var height = Double(self.originalGIFSize.height)
-        
-        let ratio = self.newSizeSlider.doubleValue / 100.0
-        
-        width *= ratio
-        height *= ratio
-        
-        width = max(width, 1.0)
-        height = max(height, 1.0)
-        
-        updateNewDimensionValues(width: width, height: height)
-    }
-    
-    //MARK: - Menu Actions -
-    
-    @IBAction func closeMenuItemSelected(_ sender: AnyObject)
-    {
-        NSApp.terminate(nil)
-    }
-    
-    @IBAction func saveMenuItemSelected(_ sender: AnyObject)
-    {
-        saveResizedClicked(sender)
-    }
-    
-    @IBAction func openMenuItemSelected(_ sender: AnyObject)
-    {
-        let openPanel = NSOpenPanel()
-        openPanel.allowedFileTypes = ["gif"]
-        openPanel.allowsOtherFileTypes = false
-        openPanel.allowsMultipleSelection = false
-        openPanel.nameFieldLabel = "Select a .gif:"
-        
-        openPanel.begin { (result: Int) in
-            if (result == NSFileHandlingPanelOKButton)
-            {
-                if let path = openPanel.url?.path
-                {
-                    self.loadGIFAtPath(pathToGIF: path)
-                }
-            }
-        }
-    }
-    
     //MARK: - Setup -
     
     override func awakeFromNib()
@@ -320,7 +215,8 @@ extension Resizer
     {
         if let gifPath = inputGIFPath
         {
-            let newSize = NSSize(width: newWidthTextField.integerValue, height: newHeightTextField.integerValue)
+            let newSize = NSSize(width: newWidthTextField.integerValue,
+                                 height: newHeightTextField.integerValue)
             let optimization = optimizationPopUp.selectedTag()
             let colorLimit = newColorsPopUp.selectedTag()
             let totalFrames = self.inputGIFInfo.numberOfFrames
@@ -347,6 +243,129 @@ extension Resizer
                                       trimmedFrames: trimmedFrames,
                                       outputPath: outputPath)
         }
+    }
+}
+
+/****************************************************************************/
+/*  IBActions, UI glue */
+/****************************************************************************/
+
+extension Resizer
+{
+    //MARK: - Actions -
+    
+    @IBAction func saveResizedClicked(_ sender: AnyObject)
+    {
+        if (inputGIFImage != nil && inputGIFPath != nil)
+        {
+            let gifExtension = "gif"
+            
+            let savePanel = NSSavePanel()
+            savePanel.isExtensionHidden = false
+            savePanel.canSelectHiddenExtension = true
+            savePanel.allowedFileTypes = [gifExtension]
+            savePanel.allowsOtherFileTypes = false
+            
+            let originalName = (originalGIFPath! as NSString).lastPathComponent
+            let newName = (originalName as NSString).deletingPathExtension
+            
+            savePanel.nameFieldStringValue = newName + " Resized.gif"
+            savePanel.nameFieldLabel = "Save resized GIF as:"
+            
+            savePanel.begin { (result: Int) in
+                if (result == NSFileHandlingPanelOKButton)
+                {
+                    if let url = savePanel.url
+                    {
+                        self.runGifsicle(outputPath: url.path)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func newWidthFieldChanged(_ sender: NSTextField)
+    {
+        let newWidth = min(Double(originalGIFSize.width), max(sender.doubleValue, 1.0))
+        let ratio = newWidth / Double(originalGIFSize.width)
+        let newHeight = Double(originalGIFSize.height) * ratio
+        updateNewDimensionValues(width: newWidth, height: newHeight)
+        updateSizeSlider(ratio)
+    }
+    
+    @IBAction func newHeightFieldChanged(_ sender: NSTextField)
+    {
+        let newHeight = min(Double(originalGIFSize.height), max(sender.doubleValue, 1.0))
+        let ratio = newHeight / Double(originalGIFSize.height)
+        let newWidth = Double(originalGIFSize.width) * ratio
+        updateNewDimensionValues(width: newWidth, height: newHeight)
+        updateSizeSlider(ratio)
+    }
+    
+    @IBAction func framePopUpChanged(_ sender: NSPopUpButton)
+    {
+        validateFrameTrimField()
+    }
+    
+    @IBAction func sizeSliderChanged(_ sender: AnyObject)
+    {
+        var width = Double(self.originalGIFSize.width)
+        var height = Double(self.originalGIFSize.height)
+        
+        let ratio = self.newSizeSlider.doubleValue / 100.0
+        
+        width *= ratio
+        height *= ratio
+        
+        width = max(width, 1.0)
+        height = max(height, 1.0)
+        
+        updateNewDimensionValues(width: width, height: height)
+    }
+    
+    //MARK: - Menu Actions -
+    
+    @IBAction func closeMenuItemSelected(_ sender: AnyObject)
+    {
+        NSApp.terminate(nil)
+    }
+    
+    @IBAction func saveMenuItemSelected(_ sender: AnyObject)
+    {
+        saveResizedClicked(sender)
+    }
+    
+    @IBAction func openMenuItemSelected(_ sender: AnyObject)
+    {
+        let openPanel = NSOpenPanel()
+        openPanel.allowedFileTypes = ["gif"]
+        openPanel.allowsOtherFileTypes = false
+        openPanel.allowsMultipleSelection = false
+        openPanel.nameFieldLabel = "Select a .gif:"
+        
+        openPanel.begin { (result: Int) in
+            if (result == NSFileHandlingPanelOKButton)
+            {
+                if let path = openPanel.url?.path
+                {
+                    self.loadGIFAtPath(pathToGIF: path)
+                }
+            }
+        }
+    }
+    
+    //MARK: - Utility
+    
+    func updateSizeSlider(_ ratio: Double)
+    {
+        newSizeSlider.doubleValue = ratio * newSizeSlider.maxValue
+    }
+    
+    func updateNewDimensionValues(width: Double, height: Double)
+    {
+        newWidthTextField.integerValue = Int(width.rounded())
+        newHeightTextField.integerValue = Int(height.rounded())
+        refreshUIWithPreviewAnimationDisabled()
     }
 }
 

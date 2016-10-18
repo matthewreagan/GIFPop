@@ -202,7 +202,7 @@ class GIFPreview: NSView
                         else
                         {
                             DispatchQueue.main.async {
-                                let alert = NSAlert.init()
+                                let alert = NSAlert()
                                 alert.messageText = "Animatd GIFs only, please"
                                 alert.informativeText = "This file type (\(utiType)) is not allowed. GIFPop works only with animated .gif files."
                                 alert.runModal()
