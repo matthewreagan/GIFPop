@@ -171,51 +171,32 @@ class GIFPreview: NSView
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool
     {
-        var pathToGIF: String? = nil
-        
         let pasteboard = sender.draggingPasteboard()
-        let types = pasteboard.types
         
-        if (types != nil)
-        {
-            if types!.contains(NSFilenamesPboardType)
-            {
-                if let paths = pasteboard.propertyList(forType: NSFilenamesPboardType) as? NSArray
-                {
-                    if let imagePath = paths[0] as? String
-                    {
-                        var utiType : String
-                        
-                        do
-                        {
-                            utiType = try NSWorkspace.shared().type(ofFile: imagePath)
-                        }
-                        catch
-                        {
-                            return false
-                        }
-    
-                        if (utiType == (kUTTypeGIF as String))
-                        {
-                            pathToGIF = imagePath
-                        }
-                        else
-                        {
-                            DispatchQueue.main.async {
-                                let alert = NSAlert()
-                                alert.messageText = "Animatd GIFs only, please"
-                                alert.informativeText = "This file type (\(utiType)) is not allowed. GIFPop works only with animated .gif files."
-                                alert.runModal()
-                            }
-                        }
-                    }
-                }
-            }
+        guard pasteboard.types?.contains(NSFilenamesPboardType) == true else {
+            return false
         }
         
-        if (pathToGIF != nil)
+        guard let imagePath = (pasteboard.propertyList(forType: NSFilenamesPboardType) as? NSArray)?.firstObject as? String else {
+            return false
+        }
+        
+        guard let utiType = try? NSWorkspace.shared().type(ofFile: imagePath) else {
+            return false
+        }
+        
+        if utiType == (kUTTypeGIF as String)
         {
-            delegate?.gifPreview(preview: self, receivedGIF: pathToGIF!)
+            delegate?.gifPreview(preview: self, receivedGIF: imagePath)
+        }
+        else
+        {
+            DispatchQueue.main.async {
+                let alert = NSAlert.init()
+                alert.messageText = "Animatd GIFs only, please"
+                alert.informativeText = "This file type (\(utiType)) is not allowed. GIFPop works only with animated .gif files."
+                alert.runModal()
+            }
         }
         
         return true
