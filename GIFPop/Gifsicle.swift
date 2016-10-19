@@ -22,14 +22,12 @@ class Gifsicle
     let gifsicleExecutableName = "gifsicle"
     var pathToGifsicle: String?
     
-    init()
-    {
+    init() {
         pathToGifsicle = runSystemTaskForStringOutput(executablePath: pathToWhich, arguments: [gifsicleExecutableName])
         
-        if (pathToGifsicle == nil ||
+        if pathToGifsicle == nil ||
             pathToGifsicle!.characters.count == 0 ||
-            (FileManager.default.fileExists(atPath: pathToGifsicle!) == false))
-        {
+            FileManager.default.fileExists(atPath: pathToGifsicle!) == false {
             pathToGifsicle = Bundle.main.path(forResource: gifsicleExecutableName, ofType: nil)
         }
     }
@@ -44,8 +42,7 @@ extension Gifsicle
                      optimize: Int?,
                      limitColors: Int?,
                      trimmedFrames: String?,
-                     outputPath: String)
-    {
+                     outputPath: String) {
         assert((pathToGifsicle?.characters.count)! > 0, "No path to Gifsicle executable")
         
         /*  Here the basic arguments for gifsicle are plugged in for the process
@@ -53,27 +50,23 @@ extension Gifsicle
         
         var arguments = ["-i", inputImage]
         
-        if (trimmedFrames != nil)
-        {
+        if trimmedFrames != nil {
             let trimmedFramesArgument = "#\(trimmedFrames!)"
             
             arguments.append(trimmedFramesArgument)
         }
         
-        if (resizeTo != nil)
-        {
+        if resizeTo != nil {
             arguments.append("--resize")
             arguments.append("\(Int(resizeTo!.width))x\(Int(resizeTo!.height))")
         }
         
-        if (optimize != nil && optimize != 0)
-        {
+        if optimize != nil && optimize != 0 {
             assert(optimize! <= 3 && optimize! >= 1, "Only optimization levels O1-O3 supported")
             arguments.append("-O\(optimize!)")
         }
         
-        if (limitColors != nil && limitColors != 0)
-        {
+        if limitColors != nil && limitColors != 0 {
             arguments.append("--colors")
             arguments.append("\(limitColors!)")
         }
@@ -85,8 +78,7 @@ extension Gifsicle
                               arguments: arguments)
     }
     
-    func getGifsicleInfo(inputImage: String) -> (GifInfo)
-    {
+    func getGifsicleInfo(inputImage: String) -> (GifInfo) {
         assert((pathToGifsicle?.characters.count)! > 0, "No path to Gifsicle executable")
         
         let gifInfo =
@@ -102,40 +94,28 @@ extension Gifsicle
         gifInfo?.enumerateLines(invoking: { (line: String, stop: inout Bool) in
             let cleanLine = line.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
-            if (cleanLine.hasPrefix("+ image #"))
-            {
+            if cleanLine.hasPrefix("+ image #") {
                 numberOfFrames += 1
-            }
-            else if (cleanLine.hasPrefix("disposal"))
-            {
-                if let lastWord = (line.components(separatedBy: " ").last as String?)
-                {
-                    if let delay = Double(lastWord.trimmingCharacters(in: CharacterSet.decimalDigits.inverted))
-                    {
+            } else if cleanLine.hasPrefix("disposal") {
+                if let lastWord = (line.components(separatedBy: " ").last as String?) {
+                    if let delay = Double(lastWord.trimmingCharacters(in: CharacterSet.decimalDigits.inverted)) {
                         frameDelay += delay
                         totalFrameDelaysComputed += 1
                     }
                 }
-            }
-            else if (cleanLine.contains("color table"))
-            {
-                if let lastWord = (line.components(separatedBy: " ").last as String?)
-                {
-                    if let colors = Int(lastWord.trimmingCharacters(in: CharacterSet.decimalDigits.inverted))
-                    {
+            } else if cleanLine.contains("color table") {
+                if let lastWord = (line.components(separatedBy: " ").last as String?) {
+                    if let colors = Int(lastWord.trimmingCharacters(in: CharacterSet.decimalDigits.inverted)) {
                         totalColors = colors
                     }
                 }
             }
         })
         
-        if (totalFrameDelaysComputed == 0 || frameDelay == 0.0)
-        {
+        if totalFrameDelaysComputed == 0 || frameDelay == 0.0 {
             print("Frame delay information unavailable, using default 0.1s")
             frameDelay = 0.1
-        }
-        else
-        {
+        } else {
             frameDelay /= Double(totalFrameDelaysComputed)
         }
         
@@ -151,18 +131,15 @@ extension Gifsicle
 {
     //MARK: - Gifsicle process utility functions -
     
-    func runSystemTaskForStringOutput(executablePath: String, arguments: [String]) -> String?
-    {
+    func runSystemTaskForStringOutput(executablePath: String, arguments: [String]) -> String? {
         let data = runSystemTask(executablePath: executablePath, arguments: arguments)
         let outputString = String.init(data: data, encoding: String.Encoding.utf8)
         
         return outputString
     }
     
-    func runSystemTask(executablePath: String, arguments: [String]) -> Data
-    {
-        if (FileManager.default.fileExists(atPath: executablePath) == false)
-        {
+    func runSystemTask(executablePath: String, arguments: [String]) -> Data {
+        if FileManager.default.fileExists(atPath: executablePath) == false {
             return Data()
         }
         

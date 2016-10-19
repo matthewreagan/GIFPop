@@ -28,17 +28,13 @@ class GIFPreview: NSView
     var gifHeightConstraint: NSLayoutConstraint?
     weak var delegate: GIFPreviewDelegate?
     
-    var animates: Bool
-    {
-        set(newAnimates)
-        {
+    var animates: Bool {
+        set(newAnimates) {
             gifView?.animates = newAnimates
         }
         
-        get
-        {
-            if (gifView != nil)
-            {
+        get {
+            if gifView != nil {
                 return gifView!.animates
             }
 
@@ -48,27 +44,22 @@ class GIFPreview: NSView
     
     //MARK: - Displaying GIFs -
     
-    func displayAimatedGIF(gif: NSImage?, atSize size: NSSize)
-    {
-        if (gif != nil)
+    func displayAimatedGIF(gif: NSImage?, atSize size: NSSize) {
+        if gif != nil
         {
-            if (gifView == nil)
+            if gifView == nil
             {
                 gifView = createGIFImageView()
                 self.addSubview(gifView!)
                 
                 applyGIFViewConstraints(atSize: size)
-            }
-            else
-            {
+            } else {
                 gifWidthConstraint?.constant = size.width
                 gifHeightConstraint?.constant = size.height
             }
             
             gifView?.image = gif
-        }
-        else
-        {
+        } else {
             gifView?.removeFromSuperview()
             gifView = nil
         }
@@ -76,8 +67,7 @@ class GIFPreview: NSView
         self.setNeedsDisplay(bounds)
     }
     
-    func createGIFImageView() -> NSImageView
-    {
+    func createGIFImageView() -> NSImageView {
         let gifView = NSImageView.init(frame: self.bounds)
         gifView.imageScaling = NSImageScaling.scaleProportionallyDown
         gifView.animates = true
@@ -89,8 +79,7 @@ class GIFPreview: NSView
         return gifView
     }
     
-    func applyGIFViewConstraints(atSize size: NSSize)
-    {
+    func applyGIFViewConstraints(atSize size: NSSize) {
         self.addConstraint(NSLayoutConstraint.init(item: gifView!,
                                                    attribute: .centerX,
                                                    relatedBy: .equal,
@@ -145,32 +134,27 @@ class GIFPreview: NSView
     
     //MARK: - View Overrides -
     
-    override func awakeFromNib()
-    {
+    override func awakeFromNib() {
         setUpDragSupport()
         beginObserving()
     }
     
     //MARK: - Drag and Drop -
     
-    func setUpDragSupport()
-    {
+    func setUpDragSupport() {
         self.register(forDraggedTypes: [NSFilenamesPboardType])
     }
     
-    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation
-    {
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         return NSDragOperation.every;
     }
     
-    override func draggingExited(_ sender: NSDraggingInfo?)
-    {
+    override func draggingExited(_ sender: NSDraggingInfo?) {
 
         self.setNeedsDisplay(self.bounds)
     }
     
-    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool
-    {
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         let pasteboard = sender.draggingPasteboard()
         
         guard pasteboard.types?.contains(NSFilenamesPboardType) == true else {
@@ -185,12 +169,9 @@ class GIFPreview: NSView
             return false
         }
         
-        if utiType == (kUTTypeGIF as String)
-        {
+        if utiType == (kUTTypeGIF as String) {
             delegate?.gifPreview(preview: self, receivedGIF: imagePath)
-        }
-        else
-        {
+        } else {
             DispatchQueue.main.async {
                 let alert = NSAlert.init()
                 alert.messageText = "Animatd GIFs only, please"
@@ -202,17 +183,14 @@ class GIFPreview: NSView
         return true
     }
     
-    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool
-    {
+    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
         return true;
     }
     
     //MARK: - Drawing -
 
-    override func draw(_ dirtyRect: NSRect)
-    {
-        if (gifView == nil)
-        {
+    override func draw(_ dirtyRect: NSRect) {
+        if gifView == nil {
             let myWidth = NSWidth(bounds)
             let myHeight = NSHeight(bounds)
             let imageSize: CGFloat = min(160.0, min(myWidth, myHeight))
@@ -229,8 +207,7 @@ class GIFPreview: NSView
     
     //MARK: - Notifications -
     
-    func beginObserving()
-    {
+    func beginObserving() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(GIFPreview.windowBeganResizing),
                                                name: NSNotification.Name.NSWindowWillStartLiveResize,

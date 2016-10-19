@@ -16,15 +16,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
     @IBOutlet weak var resizer: Resizer!
     @IBOutlet weak var aboutGIFPop: AboutGIFPop!
     
-    func applicationDidFinishLaunching(_ notification: Notification)
-    {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         let hasShownAboutWindowForFirstLaunchDefaultsKey =
             "GIFPopHasShownAboutWindowForFirstLaunch"
         
         let hasShownAbout = UserDefaults.standard.bool(forKey: hasShownAboutWindowForFirstLaunchDefaultsKey)
         
-        if (!hasShownAbout)
-        {
+        if !hasShownAbout {
             aboutGIFPop.helpButtonClicked(self)
             UserDefaults.standard.set(true, forKey: hasShownAboutWindowForFirstLaunchDefaultsKey)
         }
@@ -32,22 +30,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
         window.delegate = self
     }
 
-    func applicationWillTerminate(_ aNotification: Notification)
-    {
+    func applicationWillTerminate(_ aNotification: Notification) {
         /*  Clean up our copied GIF (in /tmp) if we can */
         
-        if let gifPath = resizer.inputGIFPath
-        {
+        if let gifPath = resizer.inputGIFPath {
             try? FileManager.default.removeItem(atPath: gifPath)
         }
     }
     
-    func application(_ sender: NSApplication, openFile filename: String) -> Bool
-    {
+    func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         guard let utiType = try? NSWorkspace.shared().type(ofFile: filename) else { return false }
         
-        if (utiType == (kUTTypeGIF as String))
-        {
+        if utiType == (kUTTypeGIF as String) {
             resizer.loadGIFAtPath(pathToGIF: filename)
             
             return true
@@ -56,8 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
         return false
     }
     
-    func windowWillClose(_ notification: Notification)
-    {
+    func windowWillClose(_ notification: Notification) {
         NSApp.terminate(nil)
     }
 }
