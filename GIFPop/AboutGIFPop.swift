@@ -9,8 +9,7 @@
 import Cocoa
 import Foundation
 
-class AboutGIFPop: NSObject
-{
+class AboutGIFPop: NSObject {
     @IBOutlet weak var aboutWindow: NSWindow!
     @IBOutlet weak var aboutIcon: NSImageView!
     @IBOutlet var aboutTextView: NSTextView!

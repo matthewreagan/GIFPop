@@ -10,8 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 
-class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
-{
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var resizer: Resizer!
     @IBOutlet weak var aboutGIFPop: AboutGIFPop!

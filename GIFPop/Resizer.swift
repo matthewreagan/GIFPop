@@ -13,8 +13,7 @@ import Cocoa
 /*  Resizer Class */
 /****************************************************************************/
 
-class Resizer : NSObject, GIFPreviewDelegate
-{
+class Resizer : NSObject, GIFPreviewDelegate {
     enum FrameTrimmingOption: Int {
         case dontChange = 0, trimBeginning, trimEnd
     }
@@ -66,8 +65,7 @@ class Resizer : NSObject, GIFPreviewDelegate
 /*  XIB, UI, and other utilities */
 /****************************************************************************/
 
-extension Resizer
-{
+extension Resizer {
     //MARK: - Setup -
     
     override func awakeFromNib() {
@@ -178,8 +176,7 @@ extension Resizer
 /*  Gifsicle */
 /****************************************************************************/
 
-extension Resizer
-{
+extension Resizer {
     //MARK: - Gifsicle -
     
     func runGifsicle(outputPath: String) {
@@ -218,8 +215,7 @@ extension Resizer
 /*  IBActions, UI glue */
 /****************************************************************************/
 
-extension Resizer
-{
+extension Resizer {
     //MARK: - Actions -
     
     @IBAction func saveResizedClicked(_ sender: AnyObject) {

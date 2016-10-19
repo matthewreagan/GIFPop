@@ -9,8 +9,7 @@
 import Cocoa
 import CoreServices
 
-protocol GIFPreviewDelegate: class
-{
+protocol GIFPreviewDelegate: class {
     func gifPreview(preview: GIFPreview, receivedGIF pathToGIF: String)
 }
 
@@ -18,8 +17,7 @@ protocol GIFPreviewDelegate: class
 /*  GIFPreview View */
 /****************************************************************************/
 
-class GIFPreview: NSView
-{
+class GIFPreview: NSView {
     //MARK: - Properties -
     
     lazy var dropHereImage: NSImage = { return NSImage(named: "dropGifHere")! }()

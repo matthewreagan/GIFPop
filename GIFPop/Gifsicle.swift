@@ -14,8 +14,7 @@ public typealias GifInfo = (numberOfFrames: Int, numberOfColors: Int, frameDelay
 /*  Gifsicle */
 /****************************************************************************/
 
-class Gifsicle
-{
+class Gifsicle {
     //MARK: - Properties -
     
     let pathToWhich = "/usr/bin/which"
@@ -33,8 +32,7 @@ class Gifsicle
     }
 }
 
-extension Gifsicle
-{
+extension Gifsicle {
     //MARK: - Gifsicle wrapper functions -
     
     func runGifsicle(inputImage: String,
@@ -127,8 +125,7 @@ extension Gifsicle
 /*  NSTask (Process) Utility */
 /****************************************************************************/
 
-extension Gifsicle
-{
+extension Gifsicle {
     //MARK: - Gifsicle process utility functions -
     
     func runSystemTaskForStringOutput(executablePath: String, arguments: [String]) -> String? {
