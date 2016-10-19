@@ -15,10 +15,6 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="vsq-Y9-dNx" customClass="Resizer" customModule="GIFPop" customModuleProvider="target">
             <connections>
-                <outlet property="aboutIcon" destination="Qir-N3-ix7" id="pgo-kZ-4LC"/>
-                <outlet property="aboutOKButton" destination="v5b-6I-4qw" id="enm-1T-RnM"/>
-                <outlet property="aboutTextView" destination="NPN-fI-oOy" id="wG3-Lb-juI"/>
-                <outlet property="aboutWindow" destination="QMa-hy-zec" id="jBG-3b-dTo"/>
                 <outlet property="frameTrimTextField" destination="lKd-MX-5eT" id="qFH-gX-H3i"/>
                 <outlet property="framesPopUp" destination="bV3-yX-AKR" id="9el-D4-Fet"/>
                 <outlet property="gifInfoLabel" destination="cZt-Zl-Yyb" id="W2d-CZ-IzO"/>
@@ -33,8 +29,18 @@
                 <outlet property="saveGIFButton" destination="UZ4-JS-mwj" id="DdP-wd-pFd"/>
             </connections>
         </customObject>
+        <customObject id="1qQ-lP-0kz" userLabel="AboutGIFPop" customClass="AboutGIFPop" customModule="GIFPop" customModuleProvider="target">
+            <connections>
+                <outlet property="aboutIcon" destination="Qir-N3-ix7" id="pDL-so-DLU"/>
+                <outlet property="aboutOKButton" destination="v5b-6I-4qw" id="686-Pb-bxf"/>
+                <outlet property="aboutTextView" destination="NPN-fI-oOy" id="eFl-qy-wX7"/>
+                <outlet property="aboutWindow" destination="QMa-hy-zec" id="v5W-Gf-1rW"/>
+                <outlet property="resizer" destination="vsq-Y9-dNx" id="Aa3-rc-F06"/>
+            </connections>
+        </customObject>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="GIFPop" customModuleProvider="target">
             <connections>
+                <outlet property="aboutGIFPop" destination="1qQ-lP-0kz" id="BYa-7I-ewf"/>
                 <outlet property="resizer" destination="vsq-Y9-dNx" id="RMg-W3-coH"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -49,7 +55,7 @@
                             <menuItem title="About GIFPop" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="helpButtonClicked:" target="vsq-Y9-dNx" id="I5e-lW-2JY"/>
+                                    <action selector="helpButtonClicked:" target="1qQ-lP-0kz" id="MbV-2i-tep"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -607,7 +613,7 @@ DQ
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="helpButtonClicked:" target="vsq-Y9-dNx" id="Ymw-VG-kgU"/>
+                            <action selector="helpButtonClicked:" target="1qQ-lP-0kz" id="ojD-EP-ata"/>
                         </connections>
                     </button>
                     <box title="Original" translatesAutoresizingMaskIntoConstraints="NO" id="hV9-O4-VVe">
@@ -736,7 +742,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="aboutOKClicked:" target="vsq-Y9-dNx" id="S7k-Z2-vIz"/>
+                            <action selector="aboutOKClicked:" target="1qQ-lP-0kz" id="dd5-jF-5fl"/>
                         </connections>
                     </button>
                     <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="uZK-vF-rqC">

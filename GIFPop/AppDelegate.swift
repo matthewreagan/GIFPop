@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
 {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var resizer: Resizer!
+    @IBOutlet weak var aboutGIFPop: AboutGIFPop!
     
     func applicationDidFinishLaunching(_ notification: Notification)
     {
@@ -24,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
         
         if (!hasShownAbout)
         {
-            resizer.helpButtonClicked(self)
+            aboutGIFPop.helpButtonClicked(self)
             UserDefaults.standard.set(true, forKey: hasShownAboutWindowForFirstLaunchDefaultsKey)
         }
         

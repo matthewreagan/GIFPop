@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C99360401DB1B91B00959296 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = C993603F1DB1B91B00959296 /* gifsicle */; };
 		C99360421DB217F900959296 /* HelpText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C99360411DB217F900959296 /* HelpText.rtf */; };
+		C9CB3DB11DB7165B00AD2E2B /* AboutGIFPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB3DB01DB7165B00AD2E2B /* AboutGIFPop.swift */; };
 		C9CE07691DB1B50400F17506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CE07681DB1B50400F17506 /* AppDelegate.swift */; };
 		C9CE076B1DB1B50400F17506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9CE076A1DB1B50400F17506 /* Assets.xcassets */; };
 		C9CE076E1DB1B50400F17506 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9CE076C1DB1B50400F17506 /* MainMenu.xib */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		C993603F1DB1B91B00959296 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
 		C99360411DB217F900959296 /* HelpText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = HelpText.rtf; sourceTree = "<group>"; };
+		C9CB3DB01DB7165B00AD2E2B /* AboutGIFPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutGIFPop.swift; sourceTree = "<group>"; };
 		C9CE07651DB1B50400F17506 /* GIFPop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GIFPop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CE07681DB1B50400F17506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9CE076A1DB1B50400F17506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				C9CE07771DB1B54C00F17506 /* Resizer.swift */,
 				C9CE07761DB1B54C00F17506 /* Gifsicle.swift */,
 				C9CE07751DB1B54C00F17506 /* GIFPreview.swift */,
+				C9CB3DB01DB7165B00AD2E2B /* AboutGIFPop.swift */,
 				C9CE076A1DB1B50400F17506 /* Assets.xcassets */,
 				C9CE076C1DB1B50400F17506 /* MainMenu.xib */,
 				C9DD19E81DB324BA00A94BDD /* Resources */,
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9CE077A1DB1B54C00F17506 /* Resizer.swift in Sources */,
+				C9CB3DB11DB7165B00AD2E2B /* AboutGIFPop.swift in Sources */,
 				C9CE07691DB1B50400F17506 /* AppDelegate.swift in Sources */,
 				C9CE07791DB1B54C00F17506 /* Gifsicle.swift in Sources */,
 				C9CE07781DB1B54C00F17506 /* GIFPreview.swift in Sources */,

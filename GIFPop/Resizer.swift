@@ -34,11 +34,6 @@ class Resizer : NSObject, GIFPreviewDelegate
     @IBOutlet weak var newSizeSlider: NSSlider!
     @IBOutlet weak var saveGIFButton: NSButton!
     @IBOutlet weak var preview: GIFPreview!
-    
-    @IBOutlet weak var aboutWindow: NSWindow!
-    @IBOutlet weak var aboutIcon: NSImageView!
-    @IBOutlet var aboutTextView: NSTextView!
-    @IBOutlet weak var aboutOKButton: NSButton!
     @IBOutlet weak var resizerWindow: NSWindow!
     
     //MARK: - Properties -
@@ -366,27 +361,5 @@ extension Resizer
         newWidthTextField.integerValue = Int(width.rounded())
         newHeightTextField.integerValue = Int(height.rounded())
         refreshUIWithPreviewAnimationDisabled()
-    }
-}
-
-/****************************************************************************/
-/*  About window */
-/****************************************************************************/
-
-extension Resizer
-{
-    //MARK: - About / Help -
-    
-    @IBAction func helpButtonClicked(_ sender: AnyObject)
-    {
-        aboutTextView.readRTFD(fromFile: Bundle.main.path(forResource: "HelpText", ofType: "rtf")!)
-        aboutIcon.image = NSImage.init(imageLiteralResourceName: "AppIcon")
-        resizerWindow.beginSheet(aboutWindow) { (response: NSModalResponse) in }
-        aboutWindow.makeFirstResponder(aboutOKButton)
-    }
-    
-    @IBAction func aboutOKClicked(_ sender: AnyObject)
-    {
-        resizerWindow?.endSheet(aboutWindow)
     }
 }
