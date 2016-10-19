@@ -44,16 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate
     
     func application(_ sender: NSApplication, openFile filename: String) -> Bool
     {
-        var utiType : String
-        
-        do
-        {
-            utiType = try NSWorkspace.shared().type(ofFile: filename)
-        }
-        catch
-        {
-            return false
-        }
+        guard let utiType = try? NSWorkspace.shared().type(ofFile: filename) else { return false }
         
         if (utiType == (kUTTypeGIF as String))
         {
