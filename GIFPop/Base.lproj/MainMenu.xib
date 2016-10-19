@@ -395,7 +395,7 @@
                         <items>
                             <menuItem title="GIFResize Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                 <connections>
-                                    <action selector="helpButtonClicked:" target="vsq-Y9-dNx" id="EDa-Hf-m5r"/>
+                                    <action selector="helpButtonClicked:" target="1qQ-lP-0kz" id="Uww-qm-iZ0"/>
                                 </connections>
                             </menuItem>
                         </items>
