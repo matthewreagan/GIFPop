@@ -43,10 +43,8 @@ class GIFPreview: NSView {
     //MARK: - Displaying GIFs -
     
     func displayAimatedGIF(gif: NSImage?, atSize size: NSSize) {
-        if gif != nil
-        {
-            if gifView == nil
-            {
+        if gif != nil {
+            if gifView == nil {
                 gifView = createGIFImageView()
                 self.addSubview(gifView!)
                 
