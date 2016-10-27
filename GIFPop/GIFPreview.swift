@@ -11,6 +11,7 @@ import CoreServices
 
 protocol GIFPreviewDelegate: class {
     func gifPreview(preview: GIFPreview, receivedGIF pathToGIF: String)
+    func gifPreview(shouldAnimatePreview: GIFPreview) -> Bool
 }
 
 /****************************************************************************/
@@ -18,6 +19,7 @@ protocol GIFPreviewDelegate: class {
 /****************************************************************************/
 
 class GIFPreview: NSView {
+    
     //MARK: - Properties -
     
     lazy var dropHereImage: NSImage = { return NSImage(named: "dropGifHere")! }()
@@ -28,7 +30,7 @@ class GIFPreview: NSView {
     
     var animates: Bool {
         set(newAnimates) {
-            gifView?.animates = newAnimates
+            gifView?.animates = newAnimates && self.delegate!.gifPreview(shouldAnimatePreview: self)
         }
         
         get {
@@ -71,6 +73,8 @@ class GIFPreview: NSView {
         gifView.layerContentsRedrawPolicy = NSViewLayerContentsRedrawPolicy.duringViewResize
         gifView.translatesAutoresizingMaskIntoConstraints = false
         gifView.isEditable = false
+        gifView.setContentCompressionResistancePriority(NSLayoutPriorityWindowSizeStayPut - 1, for: .horizontal)
+        gifView.setContentCompressionResistancePriority(NSLayoutPriorityWindowSizeStayPut - 1, for: .vertical)
         
         return gifView
     }

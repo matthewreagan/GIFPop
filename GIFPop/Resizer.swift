@@ -27,6 +27,7 @@ class Resizer : NSObject, GIFPreviewDelegate {
     @IBOutlet weak var framesPopUp: NSPopUpButton!
     @IBOutlet weak var optimizationPopUp: NSPopUpButton!
     @IBOutlet weak var newColorsPopUp: NSPopUpButton!
+    @IBOutlet weak var animatePreviewCheckbox: NSButton!
     
     @IBOutlet weak var optionsBox: NSBox!
     @IBOutlet weak var newSizeSlider: NSSlider!
@@ -77,6 +78,10 @@ extension Resizer {
     
     func gifPreview(preview: GIFPreview, receivedGIF pathToGIF: String) {
         loadGIFAtPath(pathToGIF: pathToGIF)
+    }
+    
+    func gifPreview(shouldAnimatePreview: GIFPreview) -> Bool {
+        return (self.animatePreviewCheckbox.state == NSOnState)
     }
     
     //MARK: - UI Helper Functions -
@@ -216,7 +221,12 @@ extension Resizer {
 /****************************************************************************/
 
 extension Resizer {
+    
     //MARK: - Actions -
+    
+    @IBAction func animatePreviewToggled(_ sender: AnyObject) {
+        preview.animates = ((sender as! NSButton).state == NSOnState)
+    }
     
     @IBAction func saveResizedClicked(_ sender: AnyObject) {
         if inputGIFImage != nil && inputGIFPath != nil {

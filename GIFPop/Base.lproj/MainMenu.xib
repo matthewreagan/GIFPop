@@ -15,6 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="vsq-Y9-dNx" customClass="Resizer" customModule="GIFPop" customModuleProvider="target">
             <connections>
+                <outlet property="animatePreviewCheckbox" destination="6oK-OH-t59" id="dZM-RJ-9Ei"/>
                 <outlet property="frameTrimTextField" destination="lKd-MX-5eT" id="qFH-gX-H3i"/>
                 <outlet property="framesPopUp" destination="bV3-yX-AKR" id="9el-D4-Fet"/>
                 <outlet property="gifInfoLabel" destination="cZt-Zl-Yyb" id="W2d-CZ-IzO"/>
@@ -650,10 +651,21 @@ DQ
                             <action selector="openMenuItemSelected:" target="vsq-Y9-dNx" id="jDI-8G-Go3"/>
                         </connections>
                     </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="6oK-OH-t59">
+                        <rect key="frame" x="154" y="22" width="131" height="18"/>
+                        <buttonCell key="cell" type="check" title="Animated Preview" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wiv-PN-5fm">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="animatePreviewToggled:" target="vsq-Y9-dNx" id="39N-mc-ddp"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SWv-EU-IrJ" firstAttribute="top" secondItem="cAG-ao-nK0" secondAttribute="bottom" constant="6" id="0y4-E8-bWA"/>
                     <constraint firstItem="hV9-O4-VVe" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="1aS-J4-vec"/>
+                    <constraint firstItem="6oK-OH-t59" firstAttribute="leading" secondItem="mRb-4p-wfg" secondAttribute="trailing" constant="8" id="3eM-xS-Zde"/>
                     <constraint firstItem="z6x-DO-ZN1" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="Gld-Kh-wu0"/>
                     <constraint firstItem="Bgb-uC-UyH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="HoP-sL-jym"/>
                     <constraint firstAttribute="trailing" secondItem="SWv-EU-IrJ" secondAttribute="trailing" constant="20" id="JPy-3T-SWV"/>
@@ -665,6 +677,7 @@ DQ
                     <constraint firstItem="hV9-O4-VVe" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="goO-yx-xzK"/>
                     <constraint firstAttribute="trailing" secondItem="z6x-DO-ZN1" secondAttribute="trailing" constant="20" id="igg-j2-juG"/>
                     <constraint firstAttribute="trailing" secondItem="hV9-O4-VVe" secondAttribute="trailing" constant="20" id="jFn-nh-xIp"/>
+                    <constraint firstItem="6oK-OH-t59" firstAttribute="centerY" secondItem="mRb-4p-wfg" secondAttribute="centerY" id="m2v-fz-bvy"/>
                     <constraint firstItem="Bgb-uC-UyH" firstAttribute="top" secondItem="SWv-EU-IrJ" secondAttribute="bottom" constant="10" id="qa0-PG-YTo"/>
                     <constraint firstAttribute="bottom" secondItem="SWv-EU-IrJ" secondAttribute="bottom" constant="51" id="tcY-GL-NCm"/>
                     <constraint firstItem="UZ4-JS-mwj" firstAttribute="top" secondItem="SWv-EU-IrJ" secondAttribute="bottom" constant="10" id="ukI-CS-gMC"/>
@@ -687,7 +700,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="849-Lc-4yh">
                             <rect key="frame" x="0.0" y="0.0" width="331" height="340"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView ambiguous="YES" editable="NO" drawsBackground="NO" importsGraphics="NO" findStyle="panel" allowsNonContiguousLayout="YES" id="NPN-fI-oOy">
                                     <rect key="frame" x="0.0" y="-1" width="331" height="340"/>
