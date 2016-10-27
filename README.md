@@ -41,7 +41,7 @@ GIFPop is still a work-in-progress. Current ToDo's include:
 
 - [ ] Process GIFs in background and provide live previews (so that trimming, optimization, etc. are visible in the preview)
 - [ ] Support export of resized gif by drag-and-drop
-- [ ] Improve constraints when very large GIFs are loaded
+- [x] Improve constraints when very large GIFs are loaded
 - [ ] Add options for frame delay changes
 - [ ] Remember previously used options on launch (default optimization, etc)?
 - [ ] Fix drag of new GIFs onto preview pane
