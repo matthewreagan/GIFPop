@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -642,7 +643,7 @@ DQ
                         <font key="titleFont" metaFont="smallSystemBold"/>
                     </box>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mRb-4p-wfg">
-                        <rect key="frame" x="47" y="13" width="107" height="32"/>
+                        <rect key="frame" x="193" y="13" width="107" height="32"/>
                         <buttonCell key="cell" type="push" title="Open GIF..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ndy-ec-Bn4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -652,8 +653,8 @@ DQ
                         </connections>
                     </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="6oK-OH-t59">
-                        <rect key="frame" x="154" y="22" width="131" height="18"/>
-                        <buttonCell key="cell" type="check" title="Animated Preview" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wiv-PN-5fm">
+                        <rect key="frame" x="51" y="22" width="80" height="18"/>
+                        <buttonCell key="cell" type="check" title="Animated" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Wiv-PN-5fm">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -665,19 +666,19 @@ DQ
                 <constraints>
                     <constraint firstItem="SWv-EU-IrJ" firstAttribute="top" secondItem="cAG-ao-nK0" secondAttribute="bottom" constant="6" id="0y4-E8-bWA"/>
                     <constraint firstItem="hV9-O4-VVe" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="1aS-J4-vec"/>
-                    <constraint firstItem="6oK-OH-t59" firstAttribute="leading" secondItem="mRb-4p-wfg" secondAttribute="trailing" constant="8" id="3eM-xS-Zde"/>
                     <constraint firstItem="z6x-DO-ZN1" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="Gld-Kh-wu0"/>
                     <constraint firstItem="Bgb-uC-UyH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="HoP-sL-jym"/>
                     <constraint firstAttribute="trailing" secondItem="SWv-EU-IrJ" secondAttribute="trailing" constant="20" id="JPy-3T-SWV"/>
                     <constraint firstItem="z6x-DO-ZN1" firstAttribute="top" secondItem="hV9-O4-VVe" secondAttribute="bottom" constant="8" id="P4W-l4-IZA"/>
-                    <constraint firstItem="mRb-4p-wfg" firstAttribute="leading" secondItem="Bgb-uC-UyH" secondAttribute="trailing" constant="12" id="Vcp-3F-uR0"/>
+                    <constraint firstItem="UZ4-JS-mwj" firstAttribute="leading" secondItem="mRb-4p-wfg" secondAttribute="trailing" constant="12" id="TIH-2O-Gy2"/>
                     <constraint firstItem="SWv-EU-IrJ" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="WIt-fK-Qih"/>
                     <constraint firstAttribute="bottom" secondItem="mRb-4p-wfg" secondAttribute="bottom" constant="20" id="WfN-23-b7B"/>
                     <constraint firstItem="z6x-DO-ZN1" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="110" id="aRx-b1-3Hy"/>
                     <constraint firstItem="hV9-O4-VVe" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="goO-yx-xzK"/>
+                    <constraint firstItem="6oK-OH-t59" firstAttribute="leading" secondItem="Bgb-uC-UyH" secondAttribute="trailing" constant="12" id="iPD-0v-JEC"/>
                     <constraint firstAttribute="trailing" secondItem="z6x-DO-ZN1" secondAttribute="trailing" constant="20" id="igg-j2-juG"/>
                     <constraint firstAttribute="trailing" secondItem="hV9-O4-VVe" secondAttribute="trailing" constant="20" id="jFn-nh-xIp"/>
-                    <constraint firstItem="6oK-OH-t59" firstAttribute="centerY" secondItem="mRb-4p-wfg" secondAttribute="centerY" id="m2v-fz-bvy"/>
+                    <constraint firstItem="6oK-OH-t59" firstAttribute="centerY" secondItem="Bgb-uC-UyH" secondAttribute="centerY" id="nux-6a-ZVH"/>
                     <constraint firstItem="Bgb-uC-UyH" firstAttribute="top" secondItem="SWv-EU-IrJ" secondAttribute="bottom" constant="10" id="qa0-PG-YTo"/>
                     <constraint firstAttribute="bottom" secondItem="SWv-EU-IrJ" secondAttribute="bottom" constant="51" id="tcY-GL-NCm"/>
                     <constraint firstItem="UZ4-JS-mwj" firstAttribute="top" secondItem="SWv-EU-IrJ" secondAttribute="bottom" constant="10" id="ukI-CS-gMC"/>
@@ -700,7 +701,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="849-Lc-4yh">
                             <rect key="frame" x="0.0" y="0.0" width="331" height="340"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView ambiguous="YES" editable="NO" drawsBackground="NO" importsGraphics="NO" findStyle="panel" allowsNonContiguousLayout="YES" id="NPN-fI-oOy">
                                     <rect key="frame" x="0.0" y="-1" width="331" height="340"/>
