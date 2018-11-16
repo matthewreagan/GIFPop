@@ -19,7 +19,7 @@ class AboutGIFPop: NSObject {
     @IBAction func helpButtonClicked(_ sender: AnyObject) {
         aboutTextView.readRTFD(fromFile: Bundle.main.path(forResource: "HelpText", ofType: "rtf")!)
         aboutIcon.image = NSImage.init(imageLiteralResourceName: "AppIcon")
-        resizer.resizerWindow.beginSheet(aboutWindow) { (response: NSModalResponse) in }
+        resizer.resizerWindow.beginSheet(aboutWindow) { (response: NSApplication.ModalResponse) in }
         aboutWindow.makeFirstResponder(aboutOKButton)
     }
     

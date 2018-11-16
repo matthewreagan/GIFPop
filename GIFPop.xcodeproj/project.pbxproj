@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D86C022219E525800A43B4F /* NSPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D86C021219E525800A43B4F /* NSPasteboard.swift */; };
 		C99360401DB1B91B00959296 /* gifsicle in Resources */ = {isa = PBXBuildFile; fileRef = C993603F1DB1B91B00959296 /* gifsicle */; };
 		C99360421DB217F900959296 /* HelpText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C99360411DB217F900959296 /* HelpText.rtf */; };
 		C9CB3DB11DB7165B00AD2E2B /* AboutGIFPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB3DB01DB7165B00AD2E2B /* AboutGIFPop.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D86C021219E525800A43B4F /* NSPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPasteboard.swift; sourceTree = "<group>"; };
 		C993603F1DB1B91B00959296 /* gifsicle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gifsicle; sourceTree = "<group>"; };
 		C99360411DB217F900959296 /* HelpText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = HelpText.rtf; sourceTree = "<group>"; };
 		C9CB3DB01DB7165B00AD2E2B /* AboutGIFPop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutGIFPop.swift; sourceTree = "<group>"; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D86C023219E527000A43B4F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3D86C021219E525800A43B4F /* NSPasteboard.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		C9CE075C1DB1B50400F17506 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +79,7 @@
 				C9CE07771DB1B54C00F17506 /* Resizer.swift */,
 				C9CE07761DB1B54C00F17506 /* Gifsicle.swift */,
 				C9CE07751DB1B54C00F17506 /* GIFPreview.swift */,
+				3D86C023219E527000A43B4F /* Extension */,
 				C9CB3DB01DB7165B00AD2E2B /* AboutGIFPop.swift */,
 				C9CE076A1DB1B50400F17506 /* Assets.xcassets */,
 				C9CE076C1DB1B50400F17506 /* MainMenu.xib */,
@@ -119,6 +130,7 @@
 				TargetAttributes = {
 					C9CE07641DB1B50400F17506 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -162,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9CE077A1DB1B54C00F17506 /* Resizer.swift in Sources */,
+				3D86C022219E525800A43B4F /* NSPasteboard.swift in Sources */,
 				C9CB3DB11DB7165B00AD2E2B /* AboutGIFPop.swift in Sources */,
 				C9CE07691DB1B50400F17506 /* AppDelegate.swift in Sources */,
 				C9CE07791DB1B54C00F17506 /* Gifsicle.swift in Sources */,
@@ -285,7 +298,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = mattreagan.GIFPop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -299,7 +312,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = mattreagan.GIFPop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

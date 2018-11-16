@@ -70,11 +70,11 @@ class GIFPreview: NSView {
         gifView.imageScaling = NSImageScaling.scaleProportionallyDown
         gifView.animates = true
         gifView.canDrawSubviewsIntoLayer = true
-        gifView.layerContentsRedrawPolicy = NSViewLayerContentsRedrawPolicy.duringViewResize
+        gifView.layerContentsRedrawPolicy = NSView.LayerContentsRedrawPolicy.duringViewResize
         gifView.translatesAutoresizingMaskIntoConstraints = false
         gifView.isEditable = false
-        gifView.setContentCompressionResistancePriority(NSLayoutPriorityWindowSizeStayPut - 1, for: .horizontal)
-        gifView.setContentCompressionResistancePriority(NSLayoutPriorityWindowSizeStayPut - 1, for: .vertical)
+        gifView.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.windowSizeStayPut - 1, for: .horizontal)
+        gifView.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.windowSizeStayPut - 1, for: .vertical)
         
         return gifView
     }
@@ -142,7 +142,7 @@ class GIFPreview: NSView {
     //MARK: - Drag and Drop -
     
     func setUpDragSupport() {
-        self.register(forDraggedTypes: [NSFilenamesPboardType])
+		self.registerForDraggedTypes(convertToNSPasteboardPasteboardTypeArray([NSPasteboard.PasteboardType.backwardsCompatibleFileURL.rawValue]))
     }
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -155,17 +155,17 @@ class GIFPreview: NSView {
     }
     
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        let pasteboard = sender.draggingPasteboard()
+        let pasteboard = sender.draggingPasteboard
         
-        guard pasteboard.types?.contains(NSFilenamesPboardType) == true else {
+		guard convertFromOptionalNSPasteboardPasteboardTypeArray(pasteboard.types)?.contains(NSPasteboard.PasteboardType.backwardsCompatibleFileURL.rawValue) == true else {
             return false
         }
         
-        guard let imagePath = (pasteboard.propertyList(forType: NSFilenamesPboardType) as? NSArray)?.firstObject as? String else {
+		guard let imagePath = (pasteboard.propertyList(forType: convertToNSPasteboardPasteboardType(NSPasteboard.PasteboardType.backwardsCompatibleFileURL.rawValue)) as? NSArray)?.firstObject as? String else {
             return false
         }
         
-        guard let utiType = try? NSWorkspace.shared().type(ofFile: imagePath) else {
+        guard let utiType = try? NSWorkspace.shared.type(ofFile: imagePath) else {
             return false
         }
         
@@ -202,7 +202,7 @@ class GIFPreview: NSView {
         }
         
         NSColor.init(white: 0.0, alpha: 0.08).setFill()
-        NSFrameRectWithWidth(bounds, 1.0)
+		__NSFrameRectWithWidth(bounds, 1.0)
     }
     
     //MARK: - Notifications -
@@ -210,17 +210,33 @@ class GIFPreview: NSView {
     func beginObserving() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(GIFPreview.windowBeganResizing),
-                                               name: NSNotification.Name.NSWindowWillStartLiveResize,
+                                               name: NSWindow.willStartLiveResizeNotification,
                                                object: self.window)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(GIFPreview.windowFinishedResizing),
-                                               name: NSNotification.Name.NSWindowDidEndLiveResize,
+                                               name: NSWindow.didEndLiveResizeNotification,
                                                object: self.window)
     }
     
-    func windowBeganResizing() { animates = false }
+    @objc func windowBeganResizing() { animates = false }
     
-    func windowFinishedResizing() { animates = true }
+    @objc func windowFinishedResizing() { animates = true }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSPasteboardPasteboardTypeArray(_ input: [String]) -> [NSPasteboard.PasteboardType] {
+	return input.map { key in NSPasteboard.PasteboardType(key) }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromOptionalNSPasteboardPasteboardTypeArray(_ input: [NSPasteboard.PasteboardType]?) -> [String]? {
+	guard let input = input else { return nil }
+	return input.map { key in key.rawValue }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSPasteboardPasteboardType(_ input: String) -> NSPasteboard.PasteboardType {
+	return NSPasteboard.PasteboardType(rawValue: input)
 }

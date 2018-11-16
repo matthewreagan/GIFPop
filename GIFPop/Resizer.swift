@@ -81,7 +81,7 @@ extension Resizer {
     }
     
     func gifPreview(shouldAnimatePreview: GIFPreview) -> Bool {
-        return (self.animatePreviewCheckbox.state == NSOnState)
+        return (self.animatePreviewCheckbox.state == .on)
     }
     
     //MARK: - UI Helper Functions -
@@ -145,7 +145,7 @@ extension Resizer {
     func setOptionsEnabled(_ enabled: Bool) {
         /*  A bit heavy handed but we just filter on any NSControls in the NSBox: */
         
-        let controls = self.optionsBox.contentView?.subviews.flatMap { $0 as? NSControl }
+        let controls = self.optionsBox.contentView?.subviews.compactMap { $0 as? NSControl }
         for control in controls! { control.isEnabled = enabled }
         saveGIFButton.isEnabled = enabled
     }
@@ -225,7 +225,7 @@ extension Resizer {
     //MARK: - Actions -
     
     @IBAction func animatePreviewToggled(_ sender: AnyObject) {
-        preview.animates = ((sender as! NSButton).state == NSOnState)
+        preview.animates = ((sender as! NSButton).state == .on)
     }
     
     @IBAction func saveResizedClicked(_ sender: AnyObject) {
@@ -244,8 +244,8 @@ extension Resizer {
             savePanel.nameFieldStringValue = newName + " Resized.gif"
             savePanel.nameFieldLabel = "Save resized GIF as:"
             
-            savePanel.begin { (result: Int) in
-                if result == NSFileHandlingPanelOKButton {
+            savePanel.begin { (result) in
+				if result.rawValue == NSFileHandlingPanelOKButton {
                     if let url = savePanel.url {
                         self.runGifsicle(outputPath: url.path)
                     }
@@ -306,8 +306,8 @@ extension Resizer {
         openPanel.allowsMultipleSelection = false
         openPanel.nameFieldLabel = "Select a .gif:"
         
-        openPanel.begin { (result: Int) in
-            if result == NSFileHandlingPanelOKButton {
+        openPanel.begin { (result) in
+			if result.rawValue == NSFileHandlingPanelOKButton {
                 if let path = openPanel.url?.path {
                     self.loadGIFAtPath(pathToGIF: path)
                 }

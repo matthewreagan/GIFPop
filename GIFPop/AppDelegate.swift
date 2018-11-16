@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     }
     
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
-        guard let utiType = try? NSWorkspace.shared().type(ofFile: filename) else { return false }
+        guard let utiType = try? NSWorkspace.shared.type(ofFile: filename) else { return false }
         
         if utiType == (kUTTypeGIF as String) {
             resizer.loadGIFAtPath(pathToGIF: filename)

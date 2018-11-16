@@ -25,7 +25,7 @@ class Gifsicle {
         pathToGifsicle = runSystemTaskForStringOutput(executablePath: pathToWhich, arguments: [gifsicleExecutableName])
         
         if pathToGifsicle == nil ||
-            pathToGifsicle!.characters.count == 0 ||
+            pathToGifsicle!.isEmpty ||
             FileManager.default.fileExists(atPath: pathToGifsicle!) == false {
             pathToGifsicle = Bundle.main.path(forResource: gifsicleExecutableName, ofType: nil)
         }
@@ -41,7 +41,7 @@ extension Gifsicle {
                      limitColors: Int?,
                      trimmedFrames: String?,
                      outputPath: String) {
-        assert((pathToGifsicle?.characters.count)! > 0, "No path to Gifsicle executable")
+		assert(!(pathToGifsicle ?? "").isEmpty, "No path to Gifsicle executable")
         
         /*  Here the basic arguments for gifsicle are plugged in for the process
             See: https://www.lcdf.org/gifsicle/ */
@@ -77,7 +77,7 @@ extension Gifsicle {
     }
     
     func getGifsicleInfo(inputImage: String) -> (GifInfo) {
-        assert((pathToGifsicle?.characters.count)! > 0, "No path to Gifsicle executable")
+		assert(!(pathToGifsicle ?? "").isEmpty, "No path to Gifsicle executable")
         
         let gifInfo =
             runSystemTaskForStringOutput(executablePath: pathToGifsicle!,
